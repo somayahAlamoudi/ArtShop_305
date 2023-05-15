@@ -1,6 +1,11 @@
 
 package artshop_305;
 
+
+import static artshop_305.p1_main.menu;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Item {
@@ -52,16 +57,16 @@ public class Item {
     }
 
 //METHODS: add the new item by the admin to mnue
-    public static String addNewItem(Item newItem) {
+    public static String addNewItem(Item newItem) throws FileNotFoundException {
         items.add(newItem);
-        //########### write in the file
+        
         return "Item added successfully";
     }
 //METHODS: delete the item by the admin from minu 
 
     public static String deleteItem(String itemName) {
         Item searchItem = searchItem(itemName);
-        if (searchItem != null) {
+        if (searchItem != null) { //############delete from file or remove delet buttun
             items.remove(searchItem);
             return "Item deleted successfully";
         } else {
@@ -97,7 +102,7 @@ public class Item {
         public static boolean searchCreator(String key) {
             boolean exist=false;
         System.out.println("---------------------------------------------------");
-        System.out.println("                pleas cookies system               ");
+        System.out.println("                   ART SHOP system                 ");
         System.out.println("---------------------------------------------------");
         System.out.println("---------------------------------------------------");
         for (int i = 0; i < items.size(); i++) {

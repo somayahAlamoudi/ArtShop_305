@@ -5,6 +5,8 @@
  */
 package artshop_305;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
@@ -153,6 +155,7 @@ public class p5_customerSignup extends javax.swing.JFrame {
         String firstName = jTextField3.getText();
         String lastName = jTextField4.getText();
         String address = jTextField5.getText();
+        if(!username.equals("")&&!password.equals("")&&!firstName.equals("")&&!lastName.equals("")&&!address.equals("")){
         Customer newCustomer = new Customer(username, password, firstName, lastName, address);
         
             if (p7_customrFunctions1 == null) {
@@ -160,6 +163,7 @@ public class p5_customerSignup extends javax.swing.JFrame {
             }
             p7_customrFunctions1.setVisible(true);
             this.setVisible(false);
+        }else{new JOptionPane().showMessageDialog(null,"pleas fill all the information.");}
     }//GEN-LAST:event_jButton5ActionPerformed
 
         p2_customer p2_customer1 = null;

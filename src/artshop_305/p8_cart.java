@@ -18,16 +18,18 @@ import javax.swing.JOptionPane;
  */
 public class p8_cart extends javax.swing.JFrame {
     Customer customer;
+    p7_customrFunctions p7;
     /**
      * Creates new form p8_cart
      */
     public p8_cart() {
         initComponents();
     }
-    public p8_cart(Customer customer) {
-        this.customer = customer;
+    public p8_cart(Customer customer,p7_customrFunctions p7) {
+//        this.customer = p7.customer;
+        this.p7=p7;
+//        
         initComponents();
-        textArea1.setText(customer.showCart());
     }
 
     /**
@@ -149,31 +151,34 @@ public class p8_cart extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //if 1 or 2 or nun
+        boolean accept=false;
         if( (jCheckBox2.isSelected() || jCheckBox1.isSelected() )&& !(jCheckBox1.isSelected()&& jCheckBox2.isSelected())){
-               customer.getNewOrder().setPayment(new Payment("Chash")); 
-           if(jCheckBox1.isSelected()){
+               p7.customer.getNewOrder().setPayment(new Payment("Chash")); accept=true;
+           if(jCheckBox1.isSelected()){//prob here print even if wrong info.
                String cardNumber = jTextField3.getText();
                String cardCVV = jTextField4.getText();
                String ExpiryDate = jTextField5.getText();
                Date cardExpiryDate;
                try {
                     cardExpiryDate = new SimpleDateFormat("MM/yyyy").parse(ExpiryDate);
-                    boolean valid = customer.getNewOrder().getPayment().cardInformation(cardNumber, cardCVV, cardExpiryDate);
-                    if (!valid) {
-                        new JOptionPane().showMessageDialog(null,"wrond info");
-                    }
+                    p7.customer.getNewOrder().setPayment(new Payment("Credit Card"));
+                    boolean valid = p7.customer.getNewOrder().getPayment().cardInformation(cardNumber, cardCVV, cardExpiryDate);
+                    if (!valid)  new JOptionPane().showMessageDialog(null,"wrong info");
+                    else accept=true; 
+                        
+                    
                } catch (ParseException ex) {
                    Logger.getLogger(p8_cart.class.getName()).log(Level.SEVERE, null, ex);
                }
-               customer.getNewOrder().setPayment(new Payment("Credit Card")); 
            }
+           if(accept){
             p9_invoice p9_invis1 = null;
             if (p9_invis1 == null) {
-               p9_invis1 = new p9_invoice(customer);
+               p9_invis1 = new p9_invoice(p7.customer);
             }
             p9_invis1.setVisible(true);
             this.setVisible(false);
+           }
         }else{
             new JOptionPane().showMessageDialog(null,"Please chose only one method to pay!");
         }
@@ -191,12 +196,14 @@ public class p8_cart extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-         p7_customrFunctions p7_customrFunctions = null;
+//         p7_customrFunctions p7_customrFunctions = null;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-            if (p7_customrFunctions == null) {
-            p7_customrFunctions = new p7_customrFunctions();
-            }
-            p7_customrFunctions.setVisible(true);
+//            if (p7_customrFunctions == null) {
+//            p7_customrFunctions = new p7_customrFunctions();
+//            }
+//            p7_customrFunctions.setVisible(true);
+//            this.setVisible(false);
+            p7.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -243,6 +250,6 @@ public class p8_cart extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private java.awt.TextArea textArea1;
+    public java.awt.TextArea textArea1;
     // End of variables declaration//GEN-END:variables
 }

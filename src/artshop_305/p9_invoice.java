@@ -74,8 +74,8 @@ public class p9_invoice extends javax.swing.JFrame {
         p1_main p1_main1 = null;
         if (p1_main1 == null) {
             try {
-                p1_main1 = new p1_main();
-            } catch (FileNotFoundException ex) {
+                p1_main1 = new p1_main("dont");
+            } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
         }

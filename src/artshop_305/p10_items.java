@@ -5,6 +5,8 @@
  */
 package artshop_305;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
@@ -17,6 +19,7 @@ public class p10_items extends javax.swing.JFrame {
     public p10_items() {
         initComponents();
         textArea1.setText(Item.printItems());
+
     }
 
     /**

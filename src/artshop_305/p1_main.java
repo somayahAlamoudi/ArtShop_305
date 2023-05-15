@@ -7,6 +7,7 @@ package artshop_305;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,10 +21,13 @@ public class p1_main extends javax.swing.JFrame {
     /**
      * Creates new form p1_main
      */
+         public static File menu = new File("menu.txt");
+    public p1_main(String s)  {
+        initComponents();
+    }
     public p1_main() throws FileNotFoundException {
         initComponents();
             //take the minu from file
-        File menu = new File("menu.txt");
         Scanner readMenu = new Scanner(menu);
         //read the minu
         while (readMenu.hasNext()) {
@@ -118,9 +122,9 @@ public class p1_main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        p4_adminLogin p4_adminLogin1 = null;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Administrator admin=new Administrator();
-        p4_adminLogin p4_adminLogin1 = null;
         if (p4_adminLogin1 == null) {
             p4_adminLogin1 = new p4_adminLogin(admin);
         }

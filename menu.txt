@@ -1,4 +1,3 @@
-sun_flower_painting 5 smsm 50
-bibelot 7 smsm 100
-random_art_painting 10 huda 20
-see_painting 8 noor 8
+
+f 3.0 3 3
+x 2.0 2 2

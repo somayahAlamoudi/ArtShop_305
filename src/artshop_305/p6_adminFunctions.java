@@ -5,7 +5,10 @@
  */
 package artshop_305;
 
+import static artshop_305.p1_main.menu;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -138,19 +141,25 @@ public class p6_adminFunctions extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
+//            Item.items.clear();
         String itemName = jTextField2.getText();
         double itemPrice = Double.parseDouble(jTextField3.getText());
         String creatorName = jTextField4.getText();
         int itemQuantity = Integer.parseInt(jTextField5.getText());
         Item newItem = new Item(itemName, itemPrice, creatorName, itemQuantity);
+        try (FileWriter out = new FileWriter(menu, true)) {
+           out.write(newItem.getItemName()+" "+newItem.getPrice()+" "+newItem.getCreatorName()+" "+newItem.getQuantity() + "\n");
+        } catch (Exception ex) {}
         new JOptionPane().showMessageDialog(null,Item.addNewItem(newItem));
         }catch(NumberFormatException e){
             new JOptionPane().showMessageDialog(null,e.getMessage());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(p6_adminFunctions.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
-           jTextField2.setText("");
-           jTextField3.setText("");
-           jTextField4.setText("");
-           jTextField5.setText("");
+           jTextField2.setText("item name");
+           jTextField3.setText("item price");
+           jTextField4.setText("item creator nam");
+           jTextField5.setText("item quantity");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -158,8 +167,8 @@ public class p6_adminFunctions extends javax.swing.JFrame {
         p1_main p1_main1 = null;
             if (p1_main1 == null) {
             try {
-                p1_main1 = new p1_main();
-            } catch (FileNotFoundException ex) {
+                p1_main1 = new p1_main("dont");
+            } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
             }
@@ -172,9 +181,12 @@ public class p6_adminFunctions extends javax.swing.JFrame {
         jTextField1.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-            p10_items p10_items1 = null;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-            if (p10_items1 == null) {
+        Scanner readMenu=null;
+
+        //read the minu
+            p10_items p10_items1 = null;
+        if (p10_items1 == null) {
             p10_items1 = new p10_items();
             }
             p10_items1.setVisible(true);

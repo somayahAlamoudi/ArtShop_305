@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class p7_customrFunctions extends javax.swing.JFrame {
     Customer customer;
+//    p8_cart p8;
     /**
      * Creates new form p7_customrFunctions
      */
@@ -21,7 +22,9 @@ public class p7_customrFunctions extends javax.swing.JFrame {
     }
     public p7_customrFunctions(Customer currentCustomer) {//send customer to p8
         this.customer=currentCustomer;
+        System.out.println(customer.addOrder());
         initComponents();
+//        this.p8=new p8_cart(customer, this);
         jLabel1.setText("Welcom "+customer.getUserName()+" , our ART SHOP is waiting for you. Enjoy!");
         jTextArea1.setText(Item.printItems());
     }
@@ -170,23 +173,29 @@ public class p7_customrFunctions extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        customer.addOrder();
+//        System.out.println(customer.addOrder());
         try{
            new JOptionPane().showMessageDialog(null,customer.getNewOrder().addItemToOrders(jTextField1.getText(), Integer.parseInt(jTextField2.getText())));
+           jTextArea1.setText(Item.printItems());//المفروض تطبع تحديث للقيم
         }catch(NumberFormatException ex){
            new JOptionPane().showMessageDialog(null,ex.getMessage());
         }finally{
            jTextField1.setText("");
            jTextField2.setText("");
         }
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
         p8_cart p8_cart = null;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
             if (p8_cart == null) {
-               p8_cart = new p8_cart(customer);
+//               p8_cart = new p8_cart();
+               p8_cart = new p8_cart(customer,this);
             }
+            p8_cart.textArea1.setText(customer.showCart());
             p8_cart.setVisible(true);
+            System.out.println(customer.showCart());
+//            p8.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 

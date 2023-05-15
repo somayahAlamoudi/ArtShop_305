@@ -11,7 +11,7 @@ public class ARTshop_305 {
 
     public static void main(String[] args) throws FileNotFoundException, ParseException {
         //take the minu from file
-        File menu = new File("menu.txt");
+         File menu = new File("menu.txt");
         Scanner readMenu = new Scanner(menu);
         //read the minu
         while (readMenu.hasNext()) {
@@ -211,12 +211,9 @@ public class ARTshop_305 {
                     }
                 }
                 //##############################################################
-                // if i sign up i want to be able to log in
-                // if i add more item i shold be able to (add)to my cart
+                // if i sign up i want to be able to log in 
                 // add customers file to save thire records
-                // if i return to p1 should be only one print
-                // if admin add item add it to the file
-                // 
+                // payment card 
             }
         }
     }

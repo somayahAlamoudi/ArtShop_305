@@ -98,11 +98,7 @@ public class p2_customer extends javax.swing.JFrame {
         p1_main p1_main1 = null;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (p1_main1 == null) {
-            try {
-                p1_main1 = new p1_main();
-            } catch (FileNotFoundException ex) {
-                System.out.println(ex.getMessage());
-            }
+            p1_main1 = new p1_main("dont");
         }
         p1_main1.setVisible(true);
         this.setVisible(false);
